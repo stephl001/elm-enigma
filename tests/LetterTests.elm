@@ -32,7 +32,7 @@ suite =
                             Char.isUpper c && Char.isAlpha c
                     in
                     Expect.true
-                        "Expected all characters to be capitalized latters after conversion"
+                        "Expected all characters to be capitalized letters after conversion"
                         (convertOnce randomString |> String.all isCapitalizedLetter)
             ]
         ]

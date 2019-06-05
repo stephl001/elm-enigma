@@ -1,4 +1,4 @@
-module Letter exposing (Letter, fromLetterList, toLetterList)
+module Letter exposing (Letter(..), LetterList, fromLetterList, letterToIndex, toLetterList,letterFromIndex)
 
 
 type Letter
@@ -13,6 +13,7 @@ type Letter
     | I
     | J
     | K
+    | L
     | M
     | N
     | O
@@ -27,25 +28,15 @@ type Letter
     | X
     | Y
     | Z
-    | L
-
-
-type UpperChar
-    = UpperChar Char
 
 
 type alias LetterList =
     List Letter
 
 
-toUpperChar : Char -> UpperChar
-toUpperChar =
-    Char.toUpper >> UpperChar
-
-
-charToLetter : UpperChar -> Maybe Letter
-charToLetter (UpperChar c) =
-    case c of
+charToLetter : Char -> Maybe Letter
+charToLetter c =
+    case Char.toUpper c of
         'A' ->
             Just A
 
@@ -210,6 +201,178 @@ letterToChar letter =
             'Z'
 
 
+letterFromIndex : Int -> Maybe Letter
+letterFromIndex index =
+    case index of
+        0 ->
+            Just A
+
+        1 ->
+            Just B
+
+        2 ->
+            Just C
+
+        3 ->
+            Just D
+
+        4 ->
+            Just E
+
+        5 ->
+            Just F
+
+        6 ->
+            Just G
+
+        7 ->
+            Just H
+
+        8 ->
+            Just I
+
+        9 ->
+            Just J
+
+        10 ->
+            Just K
+
+        11 ->
+            Just L
+
+        12 ->
+            Just M
+
+        13 ->
+            Just N
+
+        14 ->
+            Just O
+
+        15 ->
+            Just P
+
+        16 ->
+            Just Q
+
+        17 ->
+            Just R
+
+        18 ->
+            Just S
+
+        19 ->
+            Just T
+
+        20 ->
+            Just U
+
+        21 ->
+            Just V
+
+        22 ->
+            Just W
+
+        23 ->
+            Just X
+
+        24 ->
+            Just Y
+
+        25 ->
+            Just Z
+
+        _ ->
+            Nothing
+
+--This function must not be exported.
+safeLetterFromIndex: Int -> Letter
+safeLetterFromIndex =
+    letterFromIndex >> Maybe.withDefault A
+
+
+letterToIndex : Letter -> Int
+letterToIndex letter =
+    case letter of
+        A ->
+            0
+
+        B ->
+            1
+
+        C ->
+            2
+
+        D ->
+            3
+
+        E ->
+            4
+
+        F ->
+            5
+
+        G ->
+            6
+
+        H ->
+            7
+
+        I ->
+            8
+
+        J ->
+            9
+
+        K ->
+            10
+
+        L ->
+            11
+
+        M ->
+            12
+
+        N ->
+            13
+
+        O ->
+            14
+
+        P ->
+            15
+
+        Q ->
+            16
+
+        R ->
+            17
+
+        S ->
+            18
+
+        T ->
+            19
+
+        U ->
+            20
+
+        V ->
+            21
+
+        W ->
+            22
+
+        X ->
+            23
+
+        Y ->
+            24
+
+        Z ->
+            25
+
+
 onlyLetters : String -> String
 onlyLetters =
     String.filter Char.isAlpha
@@ -217,9 +380,11 @@ onlyLetters =
 
 toLetterList : String -> LetterList
 toLetterList =
-    onlyLetters >> String.toList >> List.filterMap (toUpperChar >> charToLetter)
+    onlyLetters >> String.toList >> List.filterMap charToLetter
 
 
 fromLetterList : LetterList -> String
 fromLetterList =
     List.map letterToChar >> String.fromList
+
+
