@@ -380,11 +380,11 @@ onlyLetters =
 
 toLetterList : String -> LetterList
 toLetterList =
-    onlyLetters >> String.toList >> List.filterMap charToLetter
+    always []
 
 
 fromLetterList : LetterList -> String
 fromLetterList =
-    List.map letterToChar >> String.fromList
+    always ""
 
 

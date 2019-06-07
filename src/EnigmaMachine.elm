@@ -22,9 +22,10 @@ createPlugboard : String -> Maybe Plugboard
 createPlugboard _ =
     Nothing
 
-plugBoardOrIdentity: String -> Plugboard
+
+plugBoardOrIdentity : String -> Plugboard
 plugBoardOrIdentity =
-    mappingsFromString >> Maybe.withDefault commonMappings.identity >> Plugboard
+    always <| Plugboard commonMappings.identity
 
 
 type EnigmaMachine
@@ -48,4 +49,4 @@ encode _ =
 
 encodeString : EnigmaMachine -> String -> String
 encodeString machine =
-    Letter.toLetterList >> encode machine >> Letter.fromLetterList
+    identity
