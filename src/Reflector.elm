@@ -1,4 +1,4 @@
-module Reflector exposing (Reflector,commonReflectors)
+module Reflector exposing (Reflector, commonReflectors)
 
 import Letter exposing (Letter)
 import Mappings exposing (Mappings, commonMappings)
@@ -7,13 +7,15 @@ import Mappings exposing (Mappings, commonMappings)
 type Reflector
     = Reflector Mappings
 
+
 type alias CommonReflector =
     { reflectorA : Reflector
     , reflectorB : Reflector
     , reflectorC : Reflector
     }
 
-commonReflectors: CommonReflector
+
+commonReflectors : CommonReflector
 commonReflectors =
     { reflectorA = Reflector commonMappings.reflectorA
     , reflectorB = Reflector commonMappings.reflectorB
@@ -22,5 +24,5 @@ commonReflectors =
 
 
 mapLetter : Reflector -> Letter -> Letter
-mapLetter _ =
-    identity
+mapLetter =
+    always identity

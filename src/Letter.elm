@@ -285,11 +285,6 @@ letterFromIndex index =
         _ ->
             Nothing
 
---This function must not be exported.
-safeLetterFromIndex: Int -> Letter
-safeLetterFromIndex =
-    letterFromIndex >> Maybe.withDefault A
-
 
 letterToIndex : Letter -> Int
 letterToIndex letter =
@@ -375,7 +370,7 @@ letterToIndex letter =
 
 onlyLetters : String -> String
 onlyLetters =
-    String.filter Char.isAlpha
+    identity
 
 
 toLetterList : String -> LetterList

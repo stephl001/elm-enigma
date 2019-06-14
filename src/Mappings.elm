@@ -139,15 +139,15 @@ commonMappings =
 
 
 reverseMappings : Mappings -> Mappings
-reverseMappings mappings =
-    mappings
+reverseMappings =
+    identity
 
 
 mapLetter : Mappings -> Letter -> Letter
-mapLetter mappings letter =
-    letter
+mapLetter =
+    always identity
 
 
 reverseMapLetter : (Letter -> Letter) -> Letter -> Letter
-reverseMapLetter fn =
-    identity
+reverseMapLetter =
+    always identity
