@@ -1,4 +1,4 @@
-module Mappings exposing (Mappings, commonMappings, mapLetter, mappingsFromString, reverseMappings)
+module Mappings exposing (Mappings, commonMappings, identityLetters, mapLetter, mappingsFromString, reverseMappings, safeMappingsFromLetters)
 
 import Array exposing (Array)
 import Array.Extra as Array
@@ -10,9 +10,19 @@ type Mappings
     = Mappings (Array Letter)
 
 
+identityLetters : List Letter
+identityLetters =
+    [ A, B, C, D, E, F, G, H, I, J, K, L, M, N, O, P, Q, R, S, T, U, V, W, X, Y, Z ]
+
+
 mappingsFromLetters : LetterList -> Maybe Mappings
 mappingsFromLetters letters =
     Nothing
+
+
+safeMappingsFromLetters : LetterList -> Mappings
+safeMappingsFromLetters =
+    mappingsFromLetters >> Maybe.withDefault identityMappings
 
 
 mappingsFromString : String -> Maybe Mappings
