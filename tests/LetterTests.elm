@@ -8,31 +8,16 @@ import Test exposing (..)
 
 suite : Test
 suite =
-    let
-        convertOnce =
-            toLetterList >> fromLetterList
-    in
     describe "The Letter module"
-        [ describe "converting string to letter list"
-            -- Nest as many descriptions as you like.
-            [ fuzz string "should yield the same list over and over" <|
-                \randomString ->
-                    let
-                        convertTwice =
-                            convertOnce >> convertOnce
-                    in
-                    Expect.equal
-                        (convertOnce randomString)
-                        (convertTwice randomString)
-            , fuzz string "should contain only letters once converted" <|
-                \randomString ->
-                    let
-                        isCapitalizedLetter : Char -> Bool
-                        isCapitalizedLetter c =
-                            Char.isUpper c && Char.isAlpha c
-                    in
-                    Expect.true
-                        "Expected all characters to be capitalized letters after conversion"
-                        (convertOnce randomString |> String.all isCapitalizedLetter)
+        [ describe "all letters"
+            [ Test.todo "should yield a unique index"
+            , Test.todo "should yield a unique capitalized letter char once converted"
+            , Test.todo "should be creatable from any char in the range [a-zA-Z] "
+            ]
+        , describe "all indexes up to 25"
+            [ Test.todo "should yield a unique letter" ]
+        , describe "converting string to letter list"
+            [ Test.todo "should yield the same list over and over"
+            , Test.todo "should contain only letters once converted"
             ]
         ]
