@@ -1,8 +1,8 @@
-module Mappings exposing (Mappings, commonMappings, identityLetters, mapLetter, mappingsFromString, reverseMappings, safeMappingsFromLetters)
+module Mappings exposing (Mappings, commonMappings, identityLetters, mapLetter, reverseMapLetter, safeMappingsFromLetters)
 
 import Array exposing (Array)
 import Array.Extra as Array
-import Letter exposing (Letter(..), LetterList, letterToIndex, toLetterList)
+import Letter exposing (Letter(..), LetterList, letterToIndex)
 import Set exposing (fromList)
 
 
@@ -23,11 +23,6 @@ mappingsFromLetters letters =
 safeMappingsFromLetters : LetterList -> Mappings
 safeMappingsFromLetters =
     mappingsFromLetters >> Maybe.withDefault identityMappings
-
-
-mappingsFromString : String -> Maybe Mappings
-mappingsFromString =
-    toLetterList >> mappingsFromLetters
 
 
 
@@ -154,10 +149,10 @@ reverseMappings =
 
 
 mapLetter : Mappings -> Letter -> Letter
-mapLetter =
-    always identity
+mapLetter _ _ =
+    A
 
 
-reverseMapLetter : (Letter -> Letter) -> Letter -> Letter
-reverseMapLetter =
-    always identity
+reverseMapLetter : Mappings -> Letter -> Letter
+reverseMapLetter _ _ =
+    A
